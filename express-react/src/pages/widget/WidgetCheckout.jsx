@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 // TODO: server.js 의 secretKey 또한 결제위젯 연동 키가 아닌 API 개별 연동 키의 시크릿 키로 변경해야 합니다.
 // TODO: 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요. 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
 // @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
-const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
-const customerKey = generateRandomString();
+const clientKey = "live_gck_Z1aOwX7K8m1zJ5LDPnMA8yQxzvNP";
+const customerKey = "52310240246300001";
 
 export function WidgetCheckoutPage() {
   const navigate = useNavigate();
@@ -87,7 +87,10 @@ export function WidgetCheckoutPage() {
         {/* 쿠폰 체크박스 */}
         <div style={{ paddingLeft: "30px" }}>
           <div className="checkable typography--p">
-            <label htmlFor="coupon-box" className="checkable__label typography--regular">
+            <label
+              htmlFor="coupon-box"
+              className="checkable__label typography--regular"
+            >
               <input
                 id="coupon-box"
                 className="checkable__input"

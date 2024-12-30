@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 // TODO: server.js 의 secretKey 또한 결제위젯 연동 키가 아닌 API 개별 연동 키의 시크릿 키로 변경해야 합니다.
 // TODO: 구매자의 고유 아이디를 불러와서 customerKey로 설정하세요. 이메일・전화번호와 같이 유추가 가능한 값은 안전하지 않습니다.
 // @docs https://docs.tosspayments.com/sdk/v2/js#토스페이먼츠-초기화
-const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
-const customerKey = generateRandomString();
+const clientKey = "live_gck_Z1aOwX7K8m1zJ5LDPnMA8yQxzvNP";
+const customerKey = "52310240246300001";
 
 export function BrandpayCheckoutPage() {
   const [brandpay, setBrandpay] = useState(null);
@@ -22,7 +22,7 @@ export function BrandpayCheckoutPage() {
         const brandpay = tossPayments.brandpay({
           customerKey,
           // TODO: 개발자센터의 브랜드페이 > Redirect URL 에 아래 URL 을 추가하세요.
-          redirectUrl: "http://localhost:3000/api/callback-auth",
+          redirectUrl: "https://platpharm.co.kr/v1/customers/pcb/callback-auth",
         });
 
         setBrandpay(brandpay);
@@ -46,7 +46,9 @@ export function BrandpayCheckoutPage() {
       },
       orderId: generateRandomString(), // 고유 주문번호
       orderName: "토스 티셔츠 외 2건",
-      successUrl: window.location.origin + `/brandpay/success?customerKey=${customerKey}&`, // 결제 요청이 성공하면 리다이렉트되는 URL
+      successUrl:
+        window.location.origin +
+        `/brandpay/success?customerKey=${customerKey}&`, // 결제 요청이 성공하면 리다이렉트되는 URL
       failUrl: window.location.origin + "/fail", // 결제 요청이 실패하면 리다이렉트되는 URL
       customerEmail: "customer123@gmail.com",
       customerName: "김토스",
@@ -87,22 +89,46 @@ export function BrandpayCheckoutPage() {
           flexDirection: "column",
         }}
       >
-        <button className="button" style={{ marginTop: "30px" }} onClick={requestPayment}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={requestPayment}
+        >
           결제하기
         </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={addPaymentMethod}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={addPaymentMethod}
+        >
           결제수단추가
         </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={changeOneTouchPay}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={changeOneTouchPay}
+        >
           원터치페이설정변경
         </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={changePassword}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={changePassword}
+        >
           비밀번호변경
         </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={isOneTouchPayEnabled}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={isOneTouchPayEnabled}
+        >
           원터치결제사용가능여부 조회
         </button>
-        <button className="button" style={{ marginTop: "30px" }} onClick={openSettings}>
+        <button
+          className="button"
+          style={{ marginTop: "30px" }}
+          onClick={openSettings}
+        >
           브랜드페이 설정 열기
         </button>
       </div>
